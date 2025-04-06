@@ -5,15 +5,6 @@ go 1.23.0
 toolchain go1.23.2
 
 require (
-	github.com/Acolyte/supervisord/config v0.0.0-20250406191847-c5185ccf8241
-	github.com/Acolyte/supervisord/events v0.0.0-20250406191847-c5185ccf8241
-	github.com/Acolyte/supervisord/faults v0.0.0-20250406191847-c5185ccf8241
-	github.com/Acolyte/supervisord/logger v0.0.0-20250406191847-c5185ccf8241
-	github.com/Acolyte/supervisord/process v0.0.0-20250406191847-c5185ccf8241
-	github.com/Acolyte/supervisord/signals v0.0.0-20250406191847-c5185ccf8241
-	github.com/Acolyte/supervisord/types v0.0.0-20250406191847-c5185ccf8241
-	github.com/Acolyte/supervisord/util v0.0.0-20250406191847-c5185ccf8241
-	github.com/Acolyte/supervisord/xmlrpcclient v0.0.0-20250406191847-c5185ccf8241
 	github.com/gorilla/mux v1.8.1
 	github.com/gorilla/rpc v1.2.1
 	github.com/jessevdk/go-flags v1.6.1
@@ -25,6 +16,18 @@ require (
 	github.com/prometheus/client_golang v1.21.1
 	github.com/sirupsen/logrus v1.9.3
 	google.golang.org/protobuf v1.36.6 // indirect; CVE-2024-24786
+)
+
+require (
+	github.com/Acolyte/supervisord/config v0.0.0-20250406191847-c5185ccf8241
+	github.com/Acolyte/supervisord/events v0.0.0-20250406191847-c5185ccf8241
+	github.com/Acolyte/supervisord/faults v0.0.0-20250406191847-c5185ccf8241
+	github.com/Acolyte/supervisord/logger v0.0.0-20250406191847-c5185ccf8241
+	github.com/Acolyte/supervisord/process v0.0.0-20250406191847-c5185ccf8241
+	github.com/Acolyte/supervisord/signals v0.0.0-20250406191847-c5185ccf8241
+	github.com/Acolyte/supervisord/types v0.0.0-20250406191847-c5185ccf8241
+	github.com/Acolyte/supervisord/util v0.0.0-20250406191847-c5185ccf8241
+	github.com/Acolyte/supervisord/xmlrpcclient v0.0.0-20250406191847-c5185ccf8241
 )
 
 require (
