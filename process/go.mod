@@ -1,6 +1,6 @@
 module github.com/Acolyte/supervisord/process
 
-go 1.16
+go 1.23.0
 
 require (
 	github.com/ochinchina/filechangemonitor v0.3.1
