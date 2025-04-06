@@ -42,8 +42,8 @@ func readEvent(reader *bufio.Reader) (string, string) {
 		return "", ""
 	}
 	tmp := strings.Split(header[0:len(header)-1], ":")
-	len, _ := strconv.Atoi(tmp[len(tmp)-1])
-	b := make([]byte, len)
+	length, _ := strconv.Atoi(tmp[len(tmp)-1])
+	b := make([]byte, length)
 	io.ReadFull(reader, b)
 	return header, string(b)
 }
@@ -126,7 +126,7 @@ func TestProcessStartingEvent(t *testing.T) {
 	if event.GetType() != "PROCESS_STATE_STARTING" {
 		t.Error("Fail to creating the process starting event")
 	}
-	fmt.Printf( "%s\n", event.GetBody() )
+	fmt.Printf("%s\n", event.GetBody())
 	if event.GetBody() != "processname:proc-1 groupname:group-1 from_state:STOPPED tries:0" {
 		t.Error("Fail to encode the process starting event")
 	}

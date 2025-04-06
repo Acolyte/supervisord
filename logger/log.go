@@ -3,13 +3,12 @@ package logger
 import (
 	"errors"
 	"fmt"
+	"github.com/Acolyte/supervisord/events"
+	"github.com/Acolyte/supervisord/faults"
 	"io"
 	"os"
 	"strings"
 	"sync"
-
-	"github.com/ochinchina/supervisord/events"
-	"github.com/ochinchina/supervisord/faults"
 )
 
 // Logger the log interface to log program stdout/stderr logs to file

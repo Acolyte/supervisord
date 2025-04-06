@@ -11,9 +11,9 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/Acolyte/supervisord/process"
 	"github.com/gorilla/rpc"
 	"github.com/ochinchina/gorilla-xmlrpc/xml"
-	"github.com/ochinchina/supervisord/process"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	log "github.com/sirupsen/logrus"

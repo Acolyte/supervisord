@@ -25,14 +25,14 @@ func (p ProgramByPriority) Less(i, j int) bool {
 
 // ProcessSorter sort the program by its priority
 type ProcessSorter struct {
-	dependsOnGraph       map[string][]string
-	procsWithooutDepends []*Entry
+	DependencyGraph              map[string][]string
+	ProcessesWithoutDependencies []*Entry
 }
 
 // NewProcessSorter creates sorter
 func NewProcessSorter() *ProcessSorter {
-	return &ProcessSorter{dependsOnGraph: make(map[string][]string),
-		procsWithooutDepends: make([]*Entry, 0)}
+	return &ProcessSorter{DependencyGraph: make(map[string][]string),
+		ProcessesWithoutDependencies: make([]*Entry, 0)}
 }
 
 func (p *ProcessSorter) initDepends(programConfigs []*Entry) {
@@ -44,16 +44,14 @@ func (p *ProcessSorter) initDepends(programConfigs []*Entry) {
 			for _, dependsOnProg := range strings.Split(dependsOn, ",") {
 				dependsOnProg = strings.TrimSpace(dependsOnProg)
 				if dependsOnProg != "" {
-					if _, ok := p.dependsOnGraph[progName]; !ok {
-						p.dependsOnGraph[progName] = make([]string, 0)
+					if _, ok := p.DependencyGraph[progName]; !ok {
+						p.DependencyGraph[progName] = make([]string, 0)
 					}
-					p.dependsOnGraph[progName] = append(p.dependsOnGraph[progName], dependsOnProg)
-
+					p.DependencyGraph[progName] = append(p.DependencyGraph[progName], dependsOnProg)
 				}
 			}
 		}
 	}
-
 }
 
 func (p *ProcessSorter) initProgramWithoutDepends(programConfigs []*Entry) {
@@ -61,7 +59,7 @@ func (p *ProcessSorter) initProgramWithoutDepends(programConfigs []*Entry) {
 	for _, config := range programConfigs {
 		if config.IsProgram() {
 			if _, ok := dependsOnPrograms[config.GetProgramName()]; !ok {
-				p.procsWithooutDepends = append(p.procsWithooutDepends, config)
+				p.ProcessesWithoutDependencies = append(p.ProcessesWithoutDependencies, config)
 			}
 		}
 	}
@@ -70,7 +68,7 @@ func (p *ProcessSorter) initProgramWithoutDepends(programConfigs []*Entry) {
 func (p *ProcessSorter) getDependsOnInfo() map[string]string {
 	dependsOnPrograms := make(map[string]string)
 
-	for k, v := range p.dependsOnGraph {
+	for k, v := range p.DependencyGraph {
 		dependsOnPrograms[k] = k
 		for _, t := range v {
 			dependsOnPrograms[t] = t
@@ -87,14 +85,14 @@ func (p *ProcessSorter) sortDepends() []string {
 
 	// get all process without depends
 	for progName := range progsWithDependsInfo {
-		if _, ok := p.dependsOnGraph[progName]; !ok {
+		if _, ok := p.DependencyGraph[progName]; !ok {
 			finishedPrograms[progName] = progName
 			progsStartOrder = append(progsStartOrder, progName)
 		}
 	}
 
 	for len(finishedPrograms) < len(progsWithDependsInfo) {
-		for progName := range p.dependsOnGraph {
+		for progName := range p.DependencyGraph {
 			if _, ok := finishedPrograms[progName]; !ok && p.inFinishedPrograms(progName, finishedPrograms) {
 				finishedPrograms[progName] = progName
 				progsStartOrder = append(progsStartOrder, progName)
@@ -106,7 +104,7 @@ func (p *ProcessSorter) sortDepends() []string {
 }
 
 func (p *ProcessSorter) inFinishedPrograms(programName string, finishedPrograms map[string]string) bool {
-	if dependsOn, ok := p.dependsOnGraph[programName]; ok {
+	if dependsOn, ok := p.DependencyGraph[programName]; ok {
 		for _, dependProgram := range dependsOn {
 			if _, finished := finishedPrograms[dependProgram]; !finished {
 				return false
@@ -115,26 +113,6 @@ func (p *ProcessSorter) inFinishedPrograms(programName string, finishedPrograms 
 	}
 	return true
 }
-
-/*func (p *ProcessSorter) SortProcess(procs []*Process) []*Process {
-	prog_configs := make([]*Entry, 0)
-	for _, proc := range procs {
-		if proc.config.IsProgram() {
-			prog_configs = append(prog_configs, proc.config)
-		}
-	}
-
-	result := make([]*Process, 0)
-	for _, config := range p.SortProgram(prog_configs) {
-		for _, proc := range procs {
-			if proc.config == config {
-				result = append(result, proc)
-			}
-		}
-	}
-
-	return result
-}*/
 
 // SortProgram sort the program  and return the result
 func (p *ProcessSorter) SortProgram(programConfigs []*Entry) []*Entry {
@@ -150,16 +128,12 @@ func (p *ProcessSorter) SortProgram(programConfigs []*Entry) []*Entry {
 		}
 	}
 
-	sort.Sort(ProgramByPriority(p.procsWithooutDepends))
-	for _, p := range p.procsWithooutDepends {
+	sort.Sort(ProgramByPriority(p.ProcessesWithoutDependencies))
+	for _, p := range p.ProcessesWithoutDependencies {
 		result = append(result, p)
 	}
 	return result
 }
-
-/*func sortProcess(procs []*Process) []*Process {
-	return NewProcessSorter().SortProcess(procs)
-}*/
 
 func sortProgram(configs []*Entry) []*Entry {
 	return NewProcessSorter().SortProgram(configs)
