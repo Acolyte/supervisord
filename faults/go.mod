@@ -1,4 +1,4 @@
-module github.com/ochinchina/supervisord/faults
+module github.com/Acolyte/supervisord/faults
 
 go 1.23.0
 

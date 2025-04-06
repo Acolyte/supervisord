@@ -1,4 +1,4 @@
-module github.com/ochinchina/supervisord/logger
+module github.com/Acolyte/supervisord/logger
 
 go 1.23.0
 
