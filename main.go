@@ -11,11 +11,11 @@ import (
 	"syscall"
 	"unicode"
 
-	"github.com/Acolyte/supervisord/config"
-	"github.com/Acolyte/supervisord/logger"
 	"github.com/jessevdk/go-flags"
 	"github.com/ochinchina/go-ini"
 	log "github.com/sirupsen/logrus"
+	"supervisord/config"
+	"supervisord/logger"
 )
 
 // Options the command line options

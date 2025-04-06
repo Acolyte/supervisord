@@ -15,13 +15,13 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/Acolyte/supervisord/config"
-	"github.com/Acolyte/supervisord/events"
-	"github.com/Acolyte/supervisord/logger"
-	"github.com/Acolyte/supervisord/signals"
 	"github.com/ochinchina/filechangemonitor"
 	"github.com/robfig/cron/v3"
 	log "github.com/sirupsen/logrus"
+	"supervisord/config"
+	"supervisord/events"
+	"supervisord/logger"
+	"supervisord/signals"
 )
 
 // State the state of process

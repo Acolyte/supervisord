@@ -6,10 +6,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/Acolyte/supervisord/config"
-	"github.com/Acolyte/supervisord/types"
-	"github.com/Acolyte/supervisord/xmlrpcclient"
 	"github.com/jessevdk/go-flags"
+	"supervisord/config"
+	"supervisord/types"
+	"supervisord/xmlrpcclient"
 )
 
 // CtlCommand the entry of ctl command

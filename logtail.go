@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/Acolyte/supervisord/logger"
 	"net/http"
+	"supervisord/logger"
 
 	"github.com/gorilla/mux"
 )

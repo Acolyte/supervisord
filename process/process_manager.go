@@ -5,8 +5,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/Acolyte/supervisord/config"
 	log "github.com/sirupsen/logrus"
+	"supervisord/config"
 )
 
 // Manager manage all the process in the supervisor

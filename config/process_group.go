@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"strings"
 
-	"github.com/Acolyte/supervisord/util"
+	"supervisord/util"
 )
 
 // ProcessGroup manage the program and its group mapping

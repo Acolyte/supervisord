@@ -3,11 +3,11 @@ package logger
 import (
 	"errors"
 	"fmt"
-	"github.com/Acolyte/supervisord/events"
-	"github.com/Acolyte/supervisord/faults"
 	"io"
 	"os"
 	"strings"
+	"supervisord/events"
+	"supervisord/faults"
 	"sync"
 )
 
